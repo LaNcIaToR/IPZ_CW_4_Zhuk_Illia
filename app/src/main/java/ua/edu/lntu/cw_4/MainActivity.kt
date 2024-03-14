@@ -91,6 +91,22 @@ fun TaskListScreen(tasks: List<Task>, onTaskClick: (Task) -> Unit) {
 }
 
 @Composable
+fun TaskListItem(task: Task, onTaskClick: (Task) -> Unit) {
+    val backgroundColor = if (task.status == TaskStatus.ACTIVE) androidx.compose.ui.graphics.Color.Green else androidx.compose.ui.graphics.Color.Gray
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onTaskClick(task) },
+        color = backgroundColor
+    ) {
+        Text(
+            text = task.title,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
+@Composable
 fun TaskApp() {
     val tasks = remember { mutableStateListOf(
         Task(1, "Task 1", "Description 1", "2024-03-15", TaskStatus.DONE),
