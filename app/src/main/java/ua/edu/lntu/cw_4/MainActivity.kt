@@ -67,6 +67,29 @@ enum class TaskStatus {
     DONE
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+fun TaskListScreen(tasks: List<Task>, onTaskClick: (Task) -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Task List") }
+            )
+        }
+    ) {
+        LazyColumn {
+            item {
+                Spacer(modifier = Modifier.height(60.dp))
+            }
+
+            items(tasks) { task ->
+                TaskListItem(task = task, onTaskClick = onTaskClick)
+            }
+        }
+    }
+}
+
 @Composable
 fun TaskApp() {
     val tasks = remember { mutableStateListOf(
