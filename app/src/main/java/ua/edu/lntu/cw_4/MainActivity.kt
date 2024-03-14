@@ -61,3 +61,8 @@ data class Task(
     val date: String,
     val status: TaskStatus
 )
+
+enum class TaskStatus {
+    ACTIVE,
+    DONE
+}
