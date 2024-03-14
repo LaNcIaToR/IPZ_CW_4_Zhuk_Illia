@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    TaskApp()
                 }
             }
         }
@@ -65,4 +65,19 @@ data class Task(
 enum class TaskStatus {
     ACTIVE,
     DONE
+}
+
+@Composable
+fun TaskApp() {
+    val tasks = remember { mutableStateListOf(
+        Task(1, "Task 1", "Description 1", "2024-03-15", TaskStatus.DONE),
+        Task(2, "Task 2", "Description 2", "2024-03-16", TaskStatus.DONE),
+        Task(3, "Task 3", "Description 3", "2024-03-17", TaskStatus.ACTIVE),
+        Task(4, "Task 4", "Description 4", "2024-03-18", TaskStatus.ACTIVE),
+        Task(5, "Task 5", "Description 5", "2024-03-19", TaskStatus.ACTIVE)
+    ) }
+
+    var currentScreen by remember { mutableStateOf("TaskList") }
+    var selectedTask by remember { mutableStateOf<Task?>(null) }
+
 }
